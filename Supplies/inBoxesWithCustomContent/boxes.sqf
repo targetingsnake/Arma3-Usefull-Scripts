@@ -67,14 +67,30 @@ while {true} do {
 					"", 
 					"(( getPos _target distance2D getMarkerPos 'marker_ao_1') <= 600) || (( getPos _target distance2D getMarkerPos 'marker_ao_2') <= 600) || (( getPos _target distance2D getMarkerPos 'marker_ao_3') <= 1200)"];
 				[_jeep, _addActionArray] remoteExec ["addAction",0,false] ;
+			}; 
+			case 3: { //random loot via ace
+				[_jeep, true, [0,6,0]] call ace_dragging_fnc_setDraggable; //disable dragging
+				[_jeep, true, [0,6,0]] call ace_dragging_fnc_setCarryable; //disable carrying
+				_detailArray = [
+					_jeep,
+					"<t color='#FF0000'>Delete Crate</t>",
+					"", "",
+					"true", "true",
+					{},
+					{},
+					{deleteVehicle (_this select 0);},
+					{},
+					[], 10, nil, true, false, false
+				];
+				[_detailArray, BIS_fnc_holdActionAdd] remoteExec ["call",0,false] ;
+				[_jeep, _ammo] execVm "scripts\Supplies\inBoxesWithCustomContent\RandomAceInventory.sqf";
 			};
 		};
 		{  
 			_x addCuratorEditableObjects [[_jeep], true]; 
 		} forEach allCurators; 
-	} else { 
 		if (MissionDebug) then {
-			"Place Occupied" remoteExec ["systemChat",0,false] ;
+			"Box Respawned" remoteExec ["systemChat",0,false] ;
 		};
 	}; 
 	sleep 30;

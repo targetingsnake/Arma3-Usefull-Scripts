@@ -1,0 +1,147 @@
+version=1;
+class GraphItems
+{
+	class Item0
+	{
+		Flags=250;
+		BasicText="";
+		Left=-98.64241;
+		Top=-273.13672;
+		Right=-8.6424103;
+		Bottom=-223.13654;
+		BgColor=255;
+		class ItemInfo
+		{
+			Text="Init";
+			lStyle=-842150451;
+			Shape=6;
+			Group=-842150451;
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			FontUnderline=1;
+			FontCharSet=0;
+			ItemType=0;
+			class ItemInfo
+			{
+				Id=1;
+				InitCode="[MarkerAO_ao_1, ""1"", 0] execVM ""scripts\Tasks\move.sqf"";";
+			};
+		};
+	};
+	class Item1
+	{
+		Flags=4346;
+		BasicText="";
+		Left=-95.726501;
+		Top=-29.914551;
+		Right=-5.7264709;
+		Bottom=20.085434;
+		BgColor=33023;
+		class ItemInfo
+		{
+			Text="";
+			lStyle=-842150451;
+			Shape=6;
+			Group=-842150451;
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+			FontCharSet=0;
+			ItemType=1;
+			class ItemInfo
+			{
+				Id=6;
+				InitCode="hint ""Test"";";
+			};
+		};
+	};
+	class Item2
+	{
+		Flags=218;
+		BasicText="";
+		Left=-94.017136;
+		Top=-159.40166;
+		Right=-4.0171356;
+		Bottom=-109.40166;
+		BgColor=65535;
+		class ItemInfo
+		{
+			Text="Test" \n "";
+			lStyle=-842150451;
+			Shape=2;
+			Group=-842150451;
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=0;
+			FontCharSet=0;
+			ItemType=4;
+			class ItemInfo
+			{
+				Id=7;
+				Condition="""1"" call BIS_fnc_taskCompleted";
+			};
+		};
+	};
+};
+class GraphLinks
+{
+	class Link0
+	{
+		From=0;
+		To=2;
+		Color=6316128;
+		Flags=2;
+		class Extra
+		{
+			ArrowSize=0;
+		};
+	};
+	class Link1
+	{
+		From=2;
+		To=1;
+		Color=6316128;
+		Flags=2;
+		class Extra
+		{
+			ArrowSize=0;
+		};
+	};
+};
+class Globals
+{
+	NextGroupID=1;
+	NextID=8;
+	FSMName="Stratification";
+	CompileConfig="J:\SteamSpiele\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg";
+	class DefaultLink
+	{
+		ArrowSize=0;
+	};
+	DefaultLinkColor=6316128;
+	DefaultLinkColorFromSelected=6316287;
+	DefaultLinkColorToSelected=6356832;
+	DefaultLinkUseCustom=1;
+	PZoomLeft=-301.70947;
+	PZoomRight=298.29053;
+	PZoomBottom=307.26501;
+	PZoomTop=-292.73499;
+	Clxs=1404;
+	Clys=1004;
+	Aspect=1;
+};
+class Window
+{
+	Flags=2;
+	MaxPosX=-1;
+	MaxPosY=-1;
+	MinPosX=-1;
+	MinPosY=-1;
+	Left=208;
+	Top=208;
+	Right=1648;
+	Bottom=1057;
+	ShowCmd=3;
+	SplitPos=1422;
+};

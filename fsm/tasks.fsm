@@ -1,0 +1,246 @@
+/*%FSM<COMPILE "J:\SteamSpiele\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, Stratification">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-173.428726,-211.598297,-83.428726,-161.598068,0.000000,"Init"};
+item1[] = {"Move_AO_2",2,250,275.794189,161.635406,365.794189,211.635406,0.000000,"Move AO 2"};
+item2[] = {"Player__Arrive_AO",4,218,19.230728,-211.965759,109.230728,-161.965759,0.000000,"Player " \n "Arrive AO 1" \n ""};
+item3[] = {"Defend_AO_1",2,250,21.877625,-113.400269,111.877640,-63.400269,0.000000,"Defend AO 1"};
+item4[] = {"Defend__Successf",4,218,-231.831085,-4.329636,-141.831085,45.670364,0.000000,"Defend " \n "Successfull"};
+item5[] = {"Defend__Failed",4,218,233.885681,-4.329636,323.885681,45.670364,0.000000,"Defend " \n "Failed"};
+item6[] = {"Player_arrive__A",4,218,275.708130,308.424103,365.708130,358.424103,0.000000,"Player arrive " \n "AO2"};
+item7[] = {"Defend_AO_2",2,250,282.019531,435.000824,372.019531,485.000824,0.000000,"Defend AO 2"};
+item8[] = {"Defend_Successfu",4,218,-14.009735,435.371521,75.990265,485.371521,0.000000,"Defend" \n "Successfull"};
+item9[] = {"Counter__attack",2,250,-246.043915,432.091919,-156.043884,482.091919,0.000000,"Counter-" \n "attack"};
+item10[] = {"Retreat__to_HQ",2,250,287.582153,641.266724,377.582153,691.266724,0.000000,"Retreat " \n "to HQ"};
+item11[] = {"Defend_Failed",4,218,293.442810,538.150574,383.442810,588.150574,0.000000,"Defend" \n "Failed"};
+item12[] = {"Players_at_HQ",4,218,294.597351,765.784851,384.597351,815.784790,0.000000,"Players" \n "at HQ"};
+item13[] = {"Lose",1,4346,292.420227,898.332153,382.420258,948.332153,0.000000,"Lose"};
+item14[] = {"Attack_Successfu",4,218,-484.009552,434.313293,-394.009583,484.313293,0.000000,"Attack" \n "Successfull"};
+item15[] = {"Win_",1,250,-689.477966,439.234680,-599.477905,489.234680,0.000000,"Win" \n ""};
+link0[] = {0,2};
+link1[] = {1,6};
+link2[] = {2,3};
+link3[] = {3,4};
+link4[] = {3,5};
+link5[] = {4,9};
+link6[] = {5,1};
+link7[] = {6,7};
+link8[] = {7,8};
+link9[] = {7,11};
+link10[] = {8,9};
+link11[] = {9,14};
+link12[] = {10,12};
+link13[] = {11,10};
+link14[] = {12,13};
+link15[] = {14,15};
+globals[] = {0.000000,0,0,0,0,640,480,1,24,6316128,1,-865.417847,861.992554,1095.010864,-140.259811,1404,1004,1};
+window[] = {2,-1,-1,-1,-1,1057,208,1648,208,3,1422};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "Stratification";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"[MarkerAO_ao_1, ""1"", 0] execVM ""scripts\Tasks\move.sqf"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Player__Arrive_AO">*/
+                                class Player__Arrive_AO
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="Defend_AO_1";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_state = ""1"" call BIS_fnc_taskState; " \n
+                                         """1"" call BIS_fnc_taskCompleted && _state == ""SUCCEEDED"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Move_AO_2">*/
+                class Move_AO_2
+                {
+                        name = "Move_AO_2";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/"[MarkerAO_ao_2, ""3"", 1] execVM ""scripts\Tasks\move.sqf"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Player_arrive__A">*/
+                                class Player_arrive__A
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="Defend_AO_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_state = ""3"" call BIS_fnc_taskState; " \n
+                                         """3"" call BIS_fnc_taskCompleted && _state == ""SUCCEEDED"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Defend_AO_1">*/
+                class Defend_AO_1
+                {
+                        name = "Defend_AO_1";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"Mission_AO_1_Data execVM ""scripts\SpawnEnemyRandom\onPremarkedPositions\enemySpawn.sqf"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Defend__Failed">*/
+                                class Defend__Failed
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Move_AO_2";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_state = ""2"" call BIS_fnc_taskState; " \n
+                                         "_result = (_state == ""CANCELED"") || (_state == ""FAILED"");" \n
+                                         """2"" call BIS_fnc_taskCompleted && _result"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Defend__Successf">*/
+                                class Defend__Successf
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="Counter__attack";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_state = ""2"" call BIS_fnc_taskState; " \n
+                                         """2"" call BIS_fnc_taskCompleted && _state == ""SUCCEEDED"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Defend_AO_2">*/
+                class Defend_AO_2
+                {
+                        name = "Defend_AO_2";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/"Mission_AO_2_Data execVM ""scripts\SpawnEnemyRandom\onPremarkedPositions\enemySpawn.sqf"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Defend_Failed">*/
+                                class Defend_Failed
+                                {
+                                        itemno = 11;
+                                        priority = 0.000000;
+                                        to="Retreat__to_HQ";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_state = ""4"" call BIS_fnc_taskState; " \n
+                                         "_result = (_state == ""CANCELED"") || (_state == ""FAILED"");" \n
+                                         """4"" call BIS_fnc_taskCompleted && _result"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Defend_Successfu">*/
+                                class Defend_Successfu
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Counter__attack";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_state = ""4"" call BIS_fnc_taskState; " \n
+                                         """4"" call BIS_fnc_taskCompleted && _state == ""SUCCEEDED"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Counter__attack">*/
+                class Counter__attack
+                {
+                        name = "Counter__attack";
+                        itemno = 9;
+                        init = /*%FSM<STATEINIT""">*/"[MarkerAO_ao_3, ""6""] execVm ""scripts\Tasks\attack.sqf"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Attack_Successfu">*/
+                                class Attack_Successfu
+                                {
+                                        itemno = 14;
+                                        priority = 0.000000;
+                                        to="Win_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_state = ""6"" call BIS_fnc_taskState; " \n
+                                         """6"" call BIS_fnc_taskCompleted && _state == ""SUCCEEDED"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Retreat__to_HQ">*/
+                class Retreat__to_HQ
+                {
+                        name = "Retreat__to_HQ";
+                        itemno = 10;
+                        init = /*%FSM<STATEINIT""">*/"[MarkerAO_ao_HQ, ""5"", 2] execVM ""scripts\Tasks\move.sqf"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Players_at_HQ">*/
+                                class Players_at_HQ
+                                {
+                                        itemno = 12;
+                                        priority = 0.000000;
+                                        to="Lose";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_state = ""5"" call BIS_fnc_taskState; " \n
+                                         """5"" call BIS_fnc_taskCompleted && _state == ""SUCCEEDED"""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Lose">*/
+                class Lose
+                {
+                        name = "Lose";
+                        itemno = 13;
+                        init = /*%FSM<STATEINIT""">*/"false execVm ""scripts\ending\generalEnding.sqf"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Win_">*/
+                class Win_
+                {
+                        name = "Win_";
+                        itemno = 15;
+                        init = /*%FSM<STATEINIT""">*/"true execVm ""scripts\ending\generalEnding.sqf"";"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "Lose",
+                "Win_",
+        };
+};
+/*%FSM</COMPILE>*/

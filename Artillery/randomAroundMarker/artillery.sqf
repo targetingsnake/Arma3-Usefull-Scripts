@@ -16,7 +16,7 @@ _markername = _this;
 
 _bombardmentRounds = [0,3] call BIS_fnc_randomInt;
 if (MissionDebug) then {
-		_text = "Bombardement Rounds: " + str _bombardmentRounds;
+		_text = "Bombardement Rounds: " + str (_bombardmentRounds + 1);
 		_text remoteExec ["systemChat",0,false] ;;
 	};
 for "_j" from 0 to _bombardmentRounds do {
@@ -51,4 +51,9 @@ for "_j" from 0 to _bombardmentRounds do {
 			sleep 10;
 		};
 	};
+};
+
+_rnd = random 1;
+if (_rnd <= 0.5) then {
+	execVm "scripts\Artillery\others\reveal.sqf";
 };
